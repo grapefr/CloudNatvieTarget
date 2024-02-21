@@ -9,8 +9,6 @@ import javafx.application.Application;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,8 +21,6 @@ import javax.transaction.Transactional;
 @Transactional
 public class TargetController {
 
-    private static final Logger logger = LoggerFactory.getLogger(Application.class);
-
     @Autowired
     TargetRepository targetRepository;
 
@@ -34,7 +30,6 @@ public class TargetController {
     public Target reqeust(HttpServletRequest request, HttpServletResponse response, @RequestBody Target target
         ) throws Exception {
             System.out.println("##### /target/approve  called ##### target : " + target.getUserId() );
-            logger.info("##### /target/approve  called ##### target : {} " , target.getUserId());
             target.setState("requested");
             targetRepository.save(target);
             return target;
