@@ -106,6 +106,13 @@ phases:
                     timeoutSeconds: 2
                     periodSeconds: 5
                     failureThreshold: 5
+                  volumeMounts:
+                  - name: pvc-vol
+                    mountPath: /data
+              volumes:
+              - name: pvc-vol
+                persistentVolumeClaim:
+                  claimName: ebs-claim
         EOF
 
 cache:
